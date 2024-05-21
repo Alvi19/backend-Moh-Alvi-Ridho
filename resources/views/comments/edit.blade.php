@@ -1,6 +1,5 @@
 @extends('layouts.sidebar')
 
-@section('title', 'User List')
 
 @section('content')
 
