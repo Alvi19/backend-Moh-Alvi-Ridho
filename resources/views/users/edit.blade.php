@@ -54,7 +54,6 @@
     </head>
 
     <body>
-        <h1>Edit User</h1>
         <form action="{{ route('users.update', $user->id) }}" method="POST">
             @csrf
             @method('PUT')

@@ -7,55 +7,37 @@
     <html>
 
     <head>
-        <title>Categories</title>
-        <!-- Add some basic styling for the table -->
-        <style>
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-            table,
-            th,
-            td {
-                border: 1px solid black;
-            }
-
-            th,
-            td {
-                padding: 10px;
-                text-align: left;
-            }
-
-            th {
-                background-color: #f2f2f2;
-            }
-        </style>
+        <title>Category List</title>
+        <!-- Add Bootstrap CDN for styling -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     </head>
 
     <body>
-        <h1>Categories</h1>
-        <a href="{{ route('categories.create') }}">Create New Category</a>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($categories as $category)
+        <div class="container">
+            <h1>Category List</h1>
+            <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3">Create New Category</a>
+            <table class="table">
+                <thead class="thead-dark">
                     <tr>
-                        <td>{{ $category->id }}</td>
-                        <td>{{ $category->name }}</td>
-                        <td>
-                            <a href="{{ route('categories.show', $category->id) }}">View</a>
-                        </td>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Actions</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($categories as $category)
+                        <tr>
+                            <td>{{ $category->id }}</td>
+                            <td>{{ $category->name }}</td>
+                            <td>
+                                <a href="{{ route('categories.show', $category->id) }}"
+                                    class="btn btn-sm btn-primary">View</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </body>
 
     </html>

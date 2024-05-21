@@ -7,68 +7,34 @@
     <html>
 
     <head>
-        <title>Comments</title>
-        <!-- Add some basic styling for the table -->
-        <style>
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-            table,
-            th,
-            td {
-                border: 1px solid black;
-            }
-
-            th,
-            td {
-                padding: 10px;
-                text-align: left;
-            }
-
-            th {
-                background-color: #f2f2f2;
-            }
-
-            ul {
-                list-style-type: none;
-                padding: 0;
-            }
-
-            ul li {
-                margin-bottom: 10px;
-            }
-
-            a {
-                text-decoration: none;
-                color: #007bff;
-                margin-right: 10px;
-            }
-        </style>
+        <title>Comment List</title>
+        <!-- Add Bootstrap CDN for styling -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     </head>
 
     <body>
-        <h1>Comments</h1>
-        <a href="{{ route('comments.create') }}">Create New Comment</a>
-        <table>
-            <thead>
-                <tr>
-                    <th>Content</th>
-                    <th>User</th>
-                    <th>Post</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($comments as $comment)
+        <div class="container">
+            <h1>Comment List</h1>
+            <a href="{{ route('comments.create') }}" class="btn btn-primary mb-3">Create New Comment</a>
+            <table class="table">
+                <thead class="thead-dark">
                     <tr>
-                        <td>{{ $comment->content }}</td>
-                        <td>{{ $comment->user->name }}</td>
-                        <td><a href="{{ route('posts.show', $comment->post->id) }}">{{ $comment->post->title }}</a></td>
+                        <th scope="col">Content</th>
+                        <th scope="col">User</th>
+                        <th scope="col">Post</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($comments as $comment)
+                        <tr>
+                            <td>{{ $comment->content }}</td>
+                            <td>{{ $comment->user->name }}</td>
+                            <td><a href="{{ route('posts.show', $comment->post->id) }}">{{ $comment->post->title }}</a></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </body>
 
     </html>

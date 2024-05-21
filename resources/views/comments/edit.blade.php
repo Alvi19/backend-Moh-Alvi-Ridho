@@ -1,34 +1,50 @@
 @extends('layouts.sidebar')
 
+@section('title', 'Edit Comment')
 
 @section('content')
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Edit Comment</title>
+        <!-- Add Bootstrap CDN for styling -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    </head>
 
     <body>
-        <h1>Edit Comment</h1>
-        <form action="{{ route('comments.update', $comment->id) }}" method="POST">
-            @csrf
-            @method('PUT')
-            <label for="content">Content:</label>
-            <textarea name="content" id="content">{{ $comment->content }}</textarea>
-            <br>
-            <label for="user_id">User:</label>
-            <select name="user_id" id="user_id">
-                @foreach ($users as $user)
-                    <option value="{{ $user->id }}" {{ $comment->user_id == $user->id ? 'selected' : '' }}>
-                        {{ $user->name }}</option>
-                @endforeach
-            </select>
-            <br>
-            <label for="post_id">Post:</label>
-            <select name="post_id" id="post_id">
-                @foreach ($posts as $post)
-                    <option value="{{ $post->id }}" {{ $comment->post_id == $post->id ? 'selected' : '' }}>
-                        {{ $post->title }}</option>
-                @endforeach
-            </select>
-            <br>
-            <button type="submit">Update</button>
-        </form>
-        <a href="{{ route('comments.index') }}">Back to Comments</a>
+        <div class="container">
+            <h1>Edit Comment</h1>
+            <form action="{{ route('comments.update', $comment->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label for="content">Content:</label>
+                    <textarea name="content" id="content" class="form-control">{{ $comment->content }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="user_id">User:</label>
+                    <select name="user_id" id="user_id" class="form-control">
+                        @foreach ($users as $user)
+                            <option value="{{ $user->id }}" {{ $comment->user_id == $user->id ? 'selected' : '' }}>
+                                {{ $user->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="post_id">Post:</label>
+                    <select name="post_id" id="post_id" class="form-control">
+                        @foreach ($posts as $post)
+                            <option value="{{ $post->id }}" {{ $comment->post_id == $post->id ? 'selected' : '' }}>
+                                {{ $post->title }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+            <a href="{{ route('comments.index') }}" class="btn btn-secondary mt-2">Back to Comments</a>
+        </div>
     </body>
+
+    </html>
 @endsection

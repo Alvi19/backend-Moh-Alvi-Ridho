@@ -7,71 +7,34 @@
     <html>
 
     <head>
-        <title>Posts</title>
-        <!-- Add some basic styling for the table -->
-        <style>
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-            table,
-            th,
-            td {
-                border: 1px solid black;
-            }
-
-            th,
-            td {
-                padding: 10px;
-                text-align: left;
-            }
-
-            th {
-                background-color: #f2f2f2;
-            }
-
-            ul {
-                list-style-type: none;
-                padding: 0;
-            }
-
-            ul li {
-                margin-bottom: 10px;
-            }
-
-            a {
-                text-decoration: none;
-                color: #007bff;
-            }
-
-            a:hover {
-                text-decoration: underline;
-            }
-        </style>
+        <title>Post List</title>
+        <!-- Add Bootstrap CDN for styling -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     </head>
 
     <body>
-        <h1>Posts</h1>
-        <a href="{{ route('posts.create') }}">Create New Post</a>
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Category</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($posts as $post)
+        <div class="container">
+            <h1>Post List</h1>
+            <a href="{{ route('posts.create') }}" class="btn btn-primary mb-3">Create New Post</a>
+            <table class="table">
+                <thead class="thead-dark">
                     <tr>
-                        <td><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></td>
-                        <td>{{ $post->user->name }}</td>
-                        <td>{{ $post->category->name }}</td>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Category</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($posts as $post)
+                        <tr>
+                            <td><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></td>
+                            <td>{{ $post->user->name }}</td>
+                            <td>{{ $post->category->name }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </body>
 
     </html>
